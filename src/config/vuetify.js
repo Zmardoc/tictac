@@ -36,7 +36,7 @@ export const vuetifyOptions = {
     themes: {
       light: {
         mall: '#C4031A',
-        primary: '#00A8A9',
+        primary: '#FFA500',
         primaryLight: '#E6F7F7',
         secondary: '#4D9FD4',
         accent: '#00A8A9',

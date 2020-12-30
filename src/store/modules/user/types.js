@@ -1,0 +1,10 @@
+export const USER = {
+  NAMESPACE: 'user',
+  ACTIONS: {
+    CREATE_USER_REQUEST: 'CREATE_USER_REQUEST',
+  },
+  MUTATIONS: {
+    CREATE_USER_RESPONSE: 'CREATE_USER_RESPONSE',
+    RESET: 'RESET',
+  },
+}
