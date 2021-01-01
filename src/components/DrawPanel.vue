@@ -9,6 +9,28 @@ const HEIGHT = 800
 
 export default {
   name: 'DrawPanel',
+  props: {
+    /*{
+  "statusCode": 0,
+  "playerCrossId": "string",
+  "playerCircleId": "string",
+  "actualPlayerId": "string",
+  "winnerId": "string",
+  "coordinates": [
+    [
+      {
+        "playerId": "string",
+        "x": 0,
+        "y": 0
+      }
+    ]
+  ]
+}*/
+    game: {
+      type: Object,
+      default: null,
+    },
+  },
   data() {
     return {
       WIDTH,
@@ -18,6 +40,14 @@ export default {
   },
   mounted() {
     this.drawGrid()
+  },
+  watch: {
+    game: {
+      handler: () => {
+        this.drawPositions()
+      },
+      deep: true,
+    },
   },
   methods: {
     getPosition(event) {
@@ -32,7 +62,7 @@ export default {
     },
     placeMark(event) {
       const myPosition = this.getPosition(event)
-      this.drawMark(myPosition, this.player ? '0' : '1')
+      this.drawMark(myPosition, this.player ? '0' : 'X')
       this.player = !this.player
     },
     drawMark(position, mark) {
@@ -44,6 +74,14 @@ export default {
         SQUARE_SIZE / 2 + SQUARE_SIZE + position.x * SQUARE_SIZE,
         2 * SQUARE_SIZE + position.y * SQUARE_SIZE,
       )
+    },
+    drawPositions() {
+      if (this.game) {
+        const ctx = this.$refs['canvas'].getContext('2d')
+        ctx.font = '16px GrixelKyrou7Wide'
+        ctx.strokeStyle = 'black'
+        //this.game.coordinates
+      }
     },
     drawGrid() {
       const ctx = this.$refs['canvas'].getContext('2d')
